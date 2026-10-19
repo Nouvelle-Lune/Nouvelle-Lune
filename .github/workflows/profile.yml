@@ -1,0 +1,77 @@
+name: Refresh the profile
+
+on:
+  schedule:
+    - cron: '23 3 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/**'
+      - '.github/workflows/profile.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: refresh-profile
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out the profile
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Read public player data
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api graphql -F query=@scripts/profile.graphql -f login=Nouvelle-Lune > "$RUNNER_TEMP/profile.json"
+
+      - name: Read the Lune snake palette
+        id: palette
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          import os
+          from pathlib import Path
+          from urllib.parse import urlencode
+
+          palette = json.loads(Path('scripts/palette.json').read_text())
+          folder = Path(os.environ['RUNNER_TEMP']) / 'lune-snakes'
+          folder.mkdir()
+          for name, filename in [('light', 'snake.svg'), ('dark', 'snake-dark.svg')]:
+              colors = palette[name]
+              dots = [colors[key] for key in ['surface', 'border', 'phase1', 'phase2', 'phase3']]
+              query = urlencode({'color_snake': colors['accentBright'], 'color_dots': ','.join(dots)}, safe=',')
+              print(f'{name}={folder / filename}?{query}')
+          PY
+
+      - name: Generate the contribution snakes
+        uses: Platane/snk/svg-only@d8f6715049803e982ee5ff501b6b9b7d5deeb09b # v3
+        with:
+          github_user_name: Nouvelle-Lune
+          github_token: ${{ github.token }}
+          outputs: |
+            ${{ steps.palette.outputs.light }}
+            ${{ steps.palette.outputs.dark }}
+
+      - name: Render the Lune profile
+        run: python3 scripts/render.py --data "$RUNNER_TEMP/profile.json" --date "$(date -u +%F)" --snakes "$RUNNER_TEMP/lune-snakes"
+
+      - name: Publish changed assets
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets
+          # Identical renders are a successful no-op, not a failed commit.
+          if git diff --cached --quiet; then
+            echo 'The profile assets are already current.'
+            exit 0
+          fi
+          git commit -m 'chore: refresh Lune profile assets'
+          git push
