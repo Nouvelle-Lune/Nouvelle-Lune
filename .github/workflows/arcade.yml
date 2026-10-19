@@ -1,0 +1,56 @@
+name: Refresh the arcade
+
+on:
+  schedule:
+    - cron: '23 3 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/**'
+      - '.github/workflows/arcade.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: refresh-arcade
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out the arcade
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Read public player data
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api graphql -F query=@scripts/profile.graphql -f login=Nouvelle-Lune > "$RUNNER_TEMP/profile.json"
+          python3 scripts/render.py --data "$RUNNER_TEMP/profile.json" --date "$(date -u +%F)"
+
+      - name: Generate the contribution snakes
+        uses: Platane/snk/svg-only@d8f6715049803e982ee5ff501b6b9b7d5deeb09b # v3
+        with:
+          github_user_name: Nouvelle-Lune
+          github_token: ${{ github.token }}
+          outputs: |
+            assets/snake.svg?color_snake=%238a6ac5&color_dots=%23f0edf6,%23ded5f0,%23bda9df,%23947dc4,%236c519d
+            assets/snake-dark.svg?color_snake=%23c6b5f4&color_dots=%23202641,%233b3b60,%235a5080,%238a73b0,%23ffb89a
+
+      - name: Publish changed assets
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets
+          # Identical renders are a successful no-op, not a failed commit.
+          if git diff --cached --quiet; then
+            echo 'The arcade assets are already current.'
+            exit 0
+          fi
+          git commit -m 'chore: refresh arcade assets'
+          git push

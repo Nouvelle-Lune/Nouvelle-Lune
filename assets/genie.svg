@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="72" height="64" viewBox="0 0 72 64" role="img" aria-labelledby="title desc">
+<title id="title">Pixel genie</title><desc id="desc">Pixel genie</desc>
+<style>
+  .float { animation: float 5s steps(5, end) infinite; }
+  .twinkle { animation: twinkle 4s steps(2, end) infinite; }
+  .prompt { animation: prompt 3s steps(2, end) infinite; }
+  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  @keyframes twinkle { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+  @keyframes prompt { 0%,70%,100% { opacity: 1; } 85% { opacity: .45; } }
+  @media (prefers-reduced-motion: reduce) { .float,.twinkle,.prompt { animation: none; } }
+</style>
+<rect x="0" y="0" width="72" height="64" fill="#171c36" />
+<path d="M10 1H62V9H71V55H62V63H10V55H1V9H10Z" fill="none" stroke="#444b70" stroke-width="2"/>
+<rect x="24" y="10" width="8" height="4" fill="#ffb89a" /><rect x="20" y="14" width="16" height="6" fill="#ffb89a" /><rect x="16" y="22" width="24" height="18" fill="#c6b5f4" /><rect x="12" y="26" width="6" height="12" fill="#c6b5f4" /><rect x="40" y="24" width="7" height="5" fill="#c6b5f4" /><rect x="44" y="28" width="7" height="5" fill="#c6b5f4" /><rect x="23" y="26" width="3" height="4" fill="#171c36" /><rect x="33" y="26" width="3" height="4" fill="#171c36" /><rect x="26" y="34" width="7" height="2" fill="#171c36" /><rect x="20" y="42" width="19" height="4" fill="#9bdfcf" /><rect x="25" y="48" width="9" height="4" fill="#9bdfcf" /><path d="M51,9.0v6.0M48.0,12h6.0" stroke="#f5edda" stroke-width="1.2"/>
+</svg>
