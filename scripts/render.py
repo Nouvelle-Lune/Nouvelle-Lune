@@ -182,8 +182,8 @@ def main():
     args.output.mkdir(parents=True, exist_ok=True)
     for mobile in (False, True):
         suffix = "-mobile" if mobile else ""
-        for name, svg in [("arcade", hero(mobile)), ("player-stats", player_card(user, args.date, mobile)),
-                          ("secret-room", secret_room(mobile))]:
+        for name, svg in [("title-screen", hero(mobile)), ("player-stats", player_card(user, args.date, mobile)),
+                          ("hidden-room", secret_room(mobile))]:
             (args.output / f"{name}{suffix}.svg").write_text(svg)
     print(f"Rendered six arcade assets for {args.date}")
 

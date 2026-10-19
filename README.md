@@ -1,8 +1,8 @@
 <p align="center">
   <a href="#select-a-quest">
     <picture>
-      <source media="(max-width: 600px)" srcset="assets/arcade-mobile.svg">
-      <img src="assets/arcade.svg" width="100%" alt="Nouvelle Lune — open source arcade. Small tools. Better quests.">
+      <source media="(max-width: 600px)" srcset="assets/title-screen-mobile.svg">
+      <img src="assets/title-screen.svg" width="100%" alt="Nouvelle Lune — open source arcade. Small tools. Better quests.">
     </picture>
   </a>
 </p>
@@ -87,8 +87,8 @@ Every contribution leaves a pixel. The snake takes care of the rest.
 <br>
 
 <picture>
-  <source media="(max-width: 600px)" srcset="assets/secret-room-mobile.svg">
-  <img src="assets/secret-room.svg" width="100%" alt="Secret room. Achievement unlocked: curiosity. No boss fight here. Just one more idea. Take a side quest. Leave a useful tool behind.">
+  <source media="(max-width: 600px)" srcset="assets/hidden-room-mobile.svg">
+  <img src="assets/hidden-room.svg" width="100%" alt="Secret room. Achievement unlocked: curiosity. No boss fight here. Just one more idea. Take a side quest. Leave a useful tool behind.">
 </picture>
 
 You found the quiet corner of the arcade. Your reward: [a tiny side-question tool](https://github.com/Nouvelle-Lune/pi-btw-cc) for when the main quest can wait a minute.
