@@ -41,8 +41,6 @@ Every contribution leaves a trace.
   <img src="assets/contributions.svg" width="100%" alt="An ice-blue snake follows Nouvelle-Lune's real GitHub contribution calendar.">
 </picture>
 
-<sub>Animation by <a href="https://github.com/Platane/snk">Platane/snk</a>.</sub>
-
 <br>
 
 <p align="center"><sub>Thanks for stopping by.</sub></p>
