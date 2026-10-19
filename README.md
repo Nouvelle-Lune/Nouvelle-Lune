@@ -1,8 +1,8 @@
 <p align="center">
-  <a href="#select-a-quest">
+  <a href="https://github.com/Nouvelle-Lune?tab=repositories">
     <picture>
-      <source media="(max-width: 600px)" srcset="assets/title-screen-mobile.svg">
-      <img src="assets/title-screen.svg" width="100%" alt="Nouvelle Lune — open source arcade. Small tools. Better quests.">
+      <source media="(max-width: 600px)" srcset="assets/title-screen-mobile.svg?v=2">
+      <img src="assets/title-screen.svg?v=2" width="100%" alt="Nouvelle Lune — open source arcade. Small tools. Better quests.">
     </picture>
   </a>
 </p>
@@ -13,46 +13,10 @@
 </p>
 
 <p align="center">
-  <a href="#select-a-quest">Select a quest</a> &nbsp;·&nbsp;
+  <a href="#save-file">Save file</a> &nbsp;·&nbsp;
   <a href="#bonus-stage">Bonus stage</a> &nbsp;·&nbsp;
   <a href="https://github.com/Nouvelle-Lune?tab=repositories">All repositories</a>
 </p>
-
-<br>
-
-## Select a quest
-
-Two tools from my inventory. Pick one and have a look around.
-
-<table>
-  <tr>
-    <td valign="top" width="50%">
-      <h3><a href="https://github.com/Nouvelle-Lune/lune-pi">Lune for Pi</a></h3>
-      <p>A calmer terminal workspace for your coding agent. Compact tool cards, structured questions, background shells, and session recaps.</p>
-      <p><code>TypeScript</code> <code>Pi extensions</code> <code>Terminal UI</code></p>
-      <p><a href="https://github.com/Nouvelle-Lune/lune-pi#quick-start">Enter the workspace →</a></p>
-    </td>
-    <td valign="top" width="50%">
-      <h3><a href="https://github.com/Nouvelle-Lune/git-commit-genie">Git Commit Genie</a></h3>
-      <p>Turn staged changes into a commit message with context. Repository-aware analysis, custom templates, and a message you can review before committing.</p>
-      <p><code>TypeScript</code> <code>VS Code</code> <code>AI tooling</code></p>
-      <p><a href="https://marketplace.visualstudio.com/items?itemName=Lune-99.git-commit-genie">Summon the genie →</a></p>
-    </td>
-  </tr>
-</table>
-
-<details>
-<summary><b>Open the side-quest inventory</b></summary>
-
-<br>
-
-| Item | What it does |
-| :--- | :--- |
-| [Shell Inspector](https://github.com/Nouvelle-Lune/lune-shell-inspector) | Keep background jobs in view, inspect their output, and get the result back to the agent. |
-| [Ask Question](https://github.com/Nouvelle-Lune/lune-ask-question) | Give the agent a structured way to ask, with choices and room for your own answer. |
-| [Pi BTW](https://github.com/Nouvelle-Lune/pi-btw-cc) | Ask a quick side question in a floating overlay without losing the main conversation. |
-
-</details>
 
 <br>
 
@@ -78,29 +42,6 @@ Every contribution leaves a pixel. The snake takes care of the rest.
 </picture>
 
 <sub>Animation by <a href="https://github.com/Platane/snk">Platane/snk</a>. This stage plays itself.</sub>
-
-<br>
-
-<details>
-<summary><code>↑ ↑ ↓ ↓ ← → ← → B A</code> &nbsp; Something is hidden here...</summary>
-
-<br>
-
-<picture>
-  <source media="(max-width: 600px)" srcset="assets/hidden-room-mobile.svg">
-  <img src="assets/hidden-room.svg" width="100%" alt="Secret room. Achievement unlocked: curiosity. No boss fight here. Just one more idea. Take a side quest. Leave a useful tool behind.">
-</picture>
-
-You found the quiet corner of the arcade. Your reward: [a tiny side-question tool](https://github.com/Nouvelle-Lune/pi-btw-cc) for when the main quest can wait a minute.
-
-```text
-ACHIEVEMENT UNLOCKED
-[+] Looked beyond the README.
-[+] Found a shortcut to a side quest.
-[+] Probably has one more idea for a project.
-```
-
-</details>
 
 <br>
 

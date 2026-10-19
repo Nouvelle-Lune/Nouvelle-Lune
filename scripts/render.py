@@ -124,7 +124,7 @@ def hero(mobile=False):
     parts += [rect(12, ground, width-24, 3, LINE)]
     for gx in range(18, width-20, 28):
         parts.append(rect(gx, ground+5, 10, 3, "#303855"))
-    parts += [f'<g class="prompt">{pixel("> SELECT A QUEST", 30 if mobile else 41, prompt_y, 2, PEACH)}</g>',
+    parts += [f'<g class="prompt">{pixel("> EXPLORE REPOS", 30 if mobile else 41, prompt_y, 2, PEACH)}</g>',
               text("1P", width-62, prompt_y+13, 15, MINT)]
     return document(width, height, "Nouvelle Lune — open source arcade", "".join(parts),
                     "Nouvelle Lune. Small tools. Better quests. Agents, terminal UIs and developer tools.")
@@ -157,16 +157,6 @@ def player_card(user, today, mobile=False):
     return document(width, height, "Nouvelle-Lune player stats", "".join(parts), desc)
 
 
-def secret_room(mobile=False):
-    width, height = (560, 196) if mobile else (900, 196)
-    body = [pixel("SECRET ROOM", 28, 30, 3, PEACH),
-            text("Achievement unlocked: curiosity.", 28, 85, 17, WHITE),
-            text("No boss fight here. Just one more idea.", 28, 113, 14),
-            text("Take a side quest. Leave a useful tool behind.", 28, 141, 14, MINT)]
-    body.append(pixel("+1 CURIOSITY", 28, height-33, 2, LILAC))
-    return document(width, height, "Secret room: curiosity unlocked", "".join(body))
-
-
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data", type=Path, required=True, help="GitHub GraphQL response")
@@ -182,10 +172,9 @@ def main():
     args.output.mkdir(parents=True, exist_ok=True)
     for mobile in (False, True):
         suffix = "-mobile" if mobile else ""
-        for name, svg in [("title-screen", hero(mobile)), ("player-stats", player_card(user, args.date, mobile)),
-                          ("hidden-room", secret_room(mobile))]:
+        for name, svg in [("title-screen", hero(mobile)), ("player-stats", player_card(user, args.date, mobile))]:
             (args.output / f"{name}{suffix}.svg").write_text(svg)
-    print(f"Rendered six arcade assets for {args.date}")
+    print(f"Rendered four arcade assets for {args.date}")
 
 
 if __name__ == "__main__":
