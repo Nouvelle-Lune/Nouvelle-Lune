@@ -88,41 +88,15 @@ def sparkle(x, y, color=LILAC, scale=1):
     return f'<path d="M{x},{y-5*scale}v{10*scale}M{x-5*scale},{y}h{10*scale}" stroke="{color}" stroke-width="{2*scale}"/>'
 
 
-def moon(x, y, scale=6, animate=True):
-    # A carved pixel disk gives the mascot its crescent silhouette.
-    body = {(col, row) for row in range(25) for col in range(25)
-            if (col - 12) ** 2 + (row - 12) ** 2 <= 121
-            and (col - 18) ** 2 + (row - 8) ** 2 > 100}
-    cells = []
-    for col, row in sorted(body):
-        edge = any((col + dx, row + dy) not in body for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)))
-        color = "#8a7bb1" if edge else ("#dfd4b8" if col < 5 or row > 20 else WHITE)
-        cells.append(rect(col, row, 1, 1, color))
-    for cx in (5, 8):
-        cells.append(rect(cx, 12, 1, 2, INK))
-    cells.extend([rect(4, 14, 1, 1, PEACH), rect(9, 14, 1, 1, PEACH), rect(6, 15, 2, 1, INK)])
-    # Hands, feet and a tiny controller make the moon a player, not a diagram.
-    cells.extend([rect(0, 16, 2, 1, LILAC), rect(-1, 17, 2, 2, WHITE),
-                  rect(7, 23, 2, 2, LILAC), rect(6, 25, 3, 1, LILAC),
-                  rect(15, 22, 2, 3, LILAC), rect(15, 25, 3, 1, LILAC),
-                  rect(11, 18, 9, 5, "#8a7bb1"), rect(12, 18, 7, 4, LILAC),
-                  rect(13, 19, 1, 3, INK), rect(12, 20, 3, 1, INK),
-                  rect(17, 19, 1, 1, PEACH), rect(18, 20, 1, 1, MINT)])
-    cls = ' class="float"' if animate else ""
-    return f'<g transform="translate({x} {y})"><g{cls}><g transform="scale({scale})">{"".join(cells)}</g></g></g>'
-
-
 def document(width, height, title, body, description=""):
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title desc">
 <title id="title">{escape(title)}</title><desc id="desc">{escape(description or title)}</desc>
 <style>
-  .float {{ animation: float 5s steps(5, end) infinite; }}
   .twinkle {{ animation: twinkle 4s steps(2, end) infinite; }}
   .prompt {{ animation: prompt 3s steps(2, end) infinite; }}
-  @keyframes float {{ 0%,100% {{ transform: translateY(0); }} 50% {{ transform: translateY(-8px); }} }}
   @keyframes twinkle {{ 0%,100% {{ opacity: 1; }} 50% {{ opacity: .35; }} }}
   @keyframes prompt {{ 0%,70%,100% {{ opacity: 1; }} 85% {{ opacity: .45; }} }}
-  @media (prefers-reduced-motion: reduce) {{ .float,.twinkle,.prompt {{ animation: none; }} }}
+  @media (prefers-reduced-motion: reduce) {{ .twinkle,.prompt {{ animation: none; }} }}
 </style>
 {rect(0, 0, width, height, INK)}
 <path d="M10 1H{width-10}V9H{width-1}V{height-9}H{width-10}V{height-1}H10V{height-9}H1V9H10Z" fill="none" stroke="{LINE}" stroke-width="2"/>
@@ -139,13 +113,13 @@ def hero(mobile=False):
         parts.append(f'<g class="twinkle" style="animation-delay:-{index}s">{sparkle(sx, sy, MINT if index % 2 else LILAC, .65)}</g>')
     if mobile:
         parts += [pixel("NOUVELLE", 30, 95, 5), pixel("LUNE", 30, 154, 8, LILAC),
-                  moon(375, 99, 6), text("Small tools. Better quests.", 30, 251, 20, WHITE),
+                  text("Small tools. Better quests.", 30, 251, 20, WHITE),
                   text("Agents / terminal UIs / devtools", 30, 280, 15)]
         ground, prompt_y = 311, 350
     else:
         parts += [pixel("NOUVELLE", 40, 86, 7), pixel("LUNE", 40, 155, 10, LILAC),
                   text("Small tools. Better quests.", 41, 258, 20, WHITE),
-                  text("Agents / terminal UIs / developer tools", 41, 286, 15), moon(664, 91, 6)]
+                  text("Agents / terminal UIs / developer tools", 41, 286, 15)]
         ground, prompt_y = 306, 328
     parts += [rect(12, ground, width-24, 3, LINE)]
     for gx in range(18, width-20, 28):
@@ -153,7 +127,7 @@ def hero(mobile=False):
     parts += [f'<g class="prompt">{pixel("> SELECT A QUEST", 30 if mobile else 41, prompt_y, 2, PEACH)}</g>',
               text("1P", width-62, prompt_y+13, 15, MINT)]
     return document(width, height, "Nouvelle Lune — open source arcade", "".join(parts),
-                    "A floating pixel crescent moon holds a controller beside the Nouvelle Lune title. Small tools. Better quests. Agents, terminal UIs and developer tools.")
+                    "Nouvelle Lune. Small tools. Better quests. Agents, terminal UIs and developer tools.")
 
 
 def player_card(user, today, mobile=False):
@@ -183,26 +157,12 @@ def player_card(user, today, mobile=False):
     return document(width, height, "Nouvelle-Lune player stats", "".join(parts), desc)
 
 
-def project_icon(kind):
-    if kind == "lune":
-        body = moon(11, 3, 2, False)
-    else:
-        body = "".join([rect(24, 10, 8, 4, PEACH), rect(20, 14, 16, 6, PEACH),
-                        rect(16, 22, 24, 18, LILAC), rect(12, 26, 6, 12, LILAC),
-                        rect(40, 24, 7, 5, LILAC), rect(44, 28, 7, 5, LILAC),
-                        rect(23, 26, 3, 4, INK), rect(33, 26, 3, 4, INK),
-                        rect(26, 34, 7, 2, INK), rect(20, 42, 19, 4, MINT),
-                        rect(25, 48, 9, 4, MINT), sparkle(51, 12, WHITE, .6)])
-    return document(72, 64, "Pixel moon" if kind == "lune" else "Pixel genie", body)
-
-
 def secret_room(mobile=False):
-    width, height = (560, 230) if mobile else (900, 196)
+    width, height = (560, 196) if mobile else (900, 196)
     body = [pixel("SECRET ROOM", 28, 30, 3, PEACH),
             text("Achievement unlocked: curiosity.", 28, 85, 17, WHITE),
             text("No boss fight here. Just one more idea.", 28, 113, 14),
             text("Take a side quest. Leave a useful tool behind.", 28, 141, 14, MINT)]
-    body.append(moon(width-150, 144 if mobile else 24, 2 if mobile else 4, True))
     body.append(pixel("+1 CURIOSITY", 28, height-33, 2, LILAC))
     return document(width, height, "Secret room: curiosity unlocked", "".join(body))
 
@@ -225,9 +185,7 @@ def main():
         for name, svg in [("arcade", hero(mobile)), ("player-stats", player_card(user, args.date, mobile)),
                           ("secret-room", secret_room(mobile))]:
             (args.output / f"{name}{suffix}.svg").write_text(svg)
-    for kind in ("lune", "genie"):
-        (args.output / f"{kind}.svg").write_text(project_icon(kind))
-    print(f"Rendered eight arcade assets for {args.date}")
+    print(f"Rendered six arcade assets for {args.date}")
 
 
 if __name__ == "__main__":

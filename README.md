@@ -2,7 +2,7 @@
   <a href="#select-a-quest">
     <picture>
       <source media="(max-width: 600px)" srcset="assets/arcade-mobile.svg">
-      <img src="assets/arcade.svg" width="100%" alt="Nouvelle Lune — open source arcade. A floating pixel moon with a controller. Small tools. Better quests.">
+      <img src="assets/arcade.svg" width="100%" alt="Nouvelle Lune — open source arcade. Small tools. Better quests.">
     </picture>
   </a>
 </p>
@@ -27,14 +27,12 @@ Two tools from my inventory. Pick one and have a look around.
 <table>
   <tr>
     <td valign="top" width="50%">
-      <a href="https://github.com/Nouvelle-Lune/lune-pi"><img src="assets/lune.svg" width="72" height="64" alt="A pixel crescent moon holding a controller"></a>
       <h3><a href="https://github.com/Nouvelle-Lune/lune-pi">Lune for Pi</a></h3>
       <p>A calmer terminal workspace for your coding agent. Compact tool cards, structured questions, background shells, and session recaps.</p>
       <p><code>TypeScript</code> <code>Pi extensions</code> <code>Terminal UI</code></p>
       <p><a href="https://github.com/Nouvelle-Lune/lune-pi#quick-start">Enter the workspace →</a></p>
     </td>
     <td valign="top" width="50%">
-      <a href="https://github.com/Nouvelle-Lune/git-commit-genie"><img src="assets/genie.svg" width="72" height="64" alt="A tiny pixel genie"></a>
       <h3><a href="https://github.com/Nouvelle-Lune/git-commit-genie">Git Commit Genie</a></h3>
       <p>Turn staged changes into a commit message with context. Repository-aware analysis, custom templates, and a message you can review before committing.</p>
       <p><code>TypeScript</code> <code>VS Code</code> <code>AI tooling</code></p>
@@ -98,7 +96,7 @@ You found the quiet corner of the arcade. Your reward: [a tiny side-question too
 ```text
 ACHIEVEMENT UNLOCKED
 [+] Looked beyond the README.
-[+] Found the moon's spare controller.
+[+] Found a shortcut to a side quest.
 [+] Probably has one more idea for a project.
 ```
 

@@ -20,7 +20,7 @@ Only GitHub's returned aggregate counts are used. The generated images contain n
 
 ## Edit or regenerate
 
-Edit `README.md` for copy, links and layout. Edit `scripts/render.py` for the palette, pixel font, mascot and cards. All art is native SVG with no remote fonts, scripts or raster dependencies. Wide and mobile variants are selected with `<picture>`; the snake also follows the viewer's light/dark preference. Custom animation stops when the viewer requests reduced motion; the third-party snake animation follows its upstream implementation.
+Edit `README.md` for copy, links and layout. Edit `scripts/render.py` for the palette, pixel font and cards. All art is native SVG with no remote fonts, scripts or raster dependencies. Wide and mobile variants are selected with `<picture>`; the snake also follows the viewer's light/dark preference. Custom animation stops when the viewer requests reduced motion; the third-party snake animation follows its upstream implementation.
 
 With Python 3.10+ and an authenticated GitHub CLI:
 

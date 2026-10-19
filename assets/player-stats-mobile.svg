@@ -1,13 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="560" height="252" viewBox="0 0 560 252" role="img" aria-labelledby="title desc">
 <title id="title">Nouvelle-Lune player stats</title><desc id="desc">446 contributions and 65 active days in the last 12 months; 6 public original repositories. Updated 2026-10-19 UTC. Activity bars show the last seven complete UTC days.</desc>
 <style>
-  .float { animation: float 5s steps(5, end) infinite; }
   .twinkle { animation: twinkle 4s steps(2, end) infinite; }
   .prompt { animation: prompt 3s steps(2, end) infinite; }
-  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
   @keyframes twinkle { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
   @keyframes prompt { 0%,70%,100% { opacity: 1; } 85% { opacity: .45; } }
-  @media (prefers-reduced-motion: reduce) { .float,.twinkle,.prompt { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { .twinkle,.prompt { animation: none; } }
 </style>
 <rect x="0" y="0" width="560" height="252" fill="#171c36" />
 <path d="M10 1H550V9H559V243H550V251H10V243H1V9H10Z" fill="none" stroke="#444b70" stroke-width="2"/>
